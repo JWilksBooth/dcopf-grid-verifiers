@@ -111,14 +111,19 @@ def run_reward_gate_tests():
     # 5. non-finite attack: json accepts NaN/Infinity literals, and every
     # comparison against NaN is False, so an unguarded feasibility check
     # records zero violations. Must score 0 on every reward.
+    # '9'*5000 exceeds CPython's 4300-digit int-string limit -> json.loads raises
+    # plain ValueError (not JSONDecodeError); a bracket bomb raises RecursionError.
+    # Both must score 0, never crash.
     n_gen = len(inst.generators)
-    for bad in ("NaN", "Infinity", "-Infinity"):
+    for bad in ("NaN", "Infinity", "-Infinity", "9" * 5000):
         a = '{"dispatch_mw": [' + ", ".join([bad] * n_gen) + ']}'
-        assert format_reward(a, inst) == 0.0, f"{bad}: format gate broken"
-        assert feasibility_reward(a, inst) == 0.0, f"{bad}: feasibility gate broken"
-        assert optimality_reward(a, inst, opt["cost"]) == 0.0, f"{bad}: optimality gate broken"
-        assert congestion_reward(a, inst) == 0.0, f"{bad}: congestion gate broken"
-    print("gate test 5 (NaN/Infinity attack): PASS — all rewards 0.0")
+        assert format_reward(a, inst) == 0.0, f"{bad[:12]}: format gate broken"
+        assert feasibility_reward(a, inst) == 0.0, f"{bad[:12]}: feasibility gate broken"
+        assert optimality_reward(a, inst, opt["cost"]) == 0.0, f"{bad[:12]}: optimality gate broken"
+        assert congestion_reward(a, inst) == 0.0, f"{bad[:12]}: congestion gate broken"
+    bomb = '{"dispatch_mw": ' + "[" * 2000 + "]" * 2000 + "}"
+    assert format_reward(bomb, inst) == 0.0 and optimality_reward(bomb, inst, opt["cost"]) == 0.0
+    print("gate test 5 (NaN/Infinity/huge-int/bracket-bomb attack): PASS — all rewards 0.0, no crash")
 
     # 6. tolerance-rent attack: shave MW off an expensive dispatched unit so
     # the answer stays inside the 0.5 MW feasibility tolerance but costs LESS

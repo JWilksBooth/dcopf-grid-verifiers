@@ -43,7 +43,10 @@ def parse_dispatch(completion: str) -> list[float] | None:
             if (isinstance(vals, list)
                     and all(_is_finite_number(v) for v in vals)):
                 return [float(v) for v in vals]
-        except (json.JSONDecodeError, TypeError):
+        # ValueError covers JSONDecodeError AND the >4300-digit-int limit
+        # ValueError json raises before our finite guard; RecursionError covers
+        # deeply nested-bracket payloads. Both must score 0, not crash.
+        except (ValueError, RecursionError, TypeError):
             continue
     return None
 

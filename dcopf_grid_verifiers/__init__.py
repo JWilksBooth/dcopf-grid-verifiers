@@ -20,7 +20,7 @@ from .rewards import (
     optimality_reward, congestion_reward, REWARD_WEIGHTS,
 )
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 DEFAULT_NUM_EXAMPLES = 300
 

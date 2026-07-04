@@ -37,6 +37,8 @@ The distribution behind these numbers is measured and tuned, not inherited — s
 | claude-haiku-4-5 (6k tokens) | **0.520** | 1.000 | 0.520 | 0.432 | 0.480 |
 | claude-opus-4-8 (16k tokens) | **0.901** | 0.920 | 0.900 | 0.898 | 0.900 |
 
+> **Reproducing this: pass `--max-tokens`.** Anthropic endpoints default to 4096 output tokens, at which frontier rollouts truncate mid-derivation and the score collapses to ~0.5 (measured). Use `--max-tokens 16000` for Opus-class, `6000` for Haiku-class, with `-r 1`.
+
 Reading: the weak model formats perfectly but only 52% of its dispatches survive
 the physics check — it loses on feasibility, not parsing. The frontier model
 reaches 90% feasibility and, *when feasible, averages 0.998 optimality* — its
@@ -73,8 +75,9 @@ N_INSTANCES=200 python tests/test_validation.py
 # measure the instance-difficulty distribution / re-run the calibration sweep
 python calibration/measure.py --n 300
 
-# evaluate a model via verifiers CLI
-vf-eval dcopf-grid-verifiers -m <model> -n 50
+# evaluate a model via verifiers CLI (give frontier models room to reason —
+# see the warning under the Baseline table; -r 1 to match the published numbers)
+vf-eval dcopf-grid-verifiers -p anthropic -m <model> -n 50 -r 1 --max-tokens 16000
 ```
 
 ```python
@@ -88,8 +91,9 @@ Random connected networks (spanning tree + loop edges, 4–8 buses), 2–4 gener
 
 The congestion rate is deliberately oversampled relative to a real N-1-planned grid, where binding congestion is far rarer: a realistic sample would be ~90% trivial merit-order instances and would not exercise the skill being tested.
 
-## Roadmap
+## The vertical
 
-- v0.3: multi-period dispatch with ramp limits (unit-commitment-lite)
-- v0.4: N-1 contingency screening reward (dispatch must survive worst single line outage)
-- v0.5: LMP calculation subtask (report nodal prices, verified against LP duals)
+- [economic-dispatch](https://github.com/JWilksBooth/economic-dispatch) — merit-order control rung (frontier-saturated by design).
+- **dcopf-grid-verifiers** (this) — congestion / space.
+- [multiperiod-dispatch](https://github.com/JWilksBooth/multiperiod-dispatch) — ramp coupling / time; shipped, 74% defeat per-period merit order.
+- Next: N-1 contingency screening (dispatch must survive the worst single line outage); LMP/nodal pricing verified against LP duals.

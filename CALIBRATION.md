@@ -112,10 +112,11 @@ for each:
    the environment has training/test signal; a realistic sample would be ~90%
    trivial merit-order and would not exercise the skill.
 
-## Open item — model discrimination (step 5)
+## Model discrimination — confirmed
 
 Calibration is *proven* only when the environment separates a weak model from a
-strong one. Pending an API key: run `vf-eval` on a cheap and a frontier model
-(see `calibration/eval.md`) and confirm a wide score gap with the frontier model
-not maxing it. If a cheap model already scores ~0.9, tighten; if frontier scores
-~0.3, loosen or clarify the prompt.
+strong one. Measured (README Baseline table): **claude-haiku-4-5 0.520 vs
+claude-opus-4-8 0.901** — a 0.38 gap, with the weak model at 52% feasibility
+(it fails on physics, not formatting) and the frontier model at 90%, not
+saturated. The frontier gap is partly reasoning budget: at 6k output tokens
+half of Opus's rollouts truncate. Reproduce via `calibration/eval.md`.

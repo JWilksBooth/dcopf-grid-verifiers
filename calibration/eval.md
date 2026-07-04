@@ -1,12 +1,10 @@
-# Step 5 — model-discrimination eval
+# Reproducing the baselines
 
 Calibration is *proven* only when the environment separates a weak model from a
-strong one, with the frontier model **not** maxing it (headroom). This is also
-the number a Hub listing lives or dies on: *"cheap model 0.4, frontier 0.8"* is
-what a lab actually reads.
-
-Blocked on one input: an API key. `vf-eval` is installed and the environment is
-pip-installed (editable) as `dcopf-grid-verifiers`.
+strong one, with the frontier model **not** maxing it (headroom). Measured
+result (in the README): claude-haiku-4-5 0.520 vs claude-opus-4-8 0.901 —
+a wide gap with the frontier model at 90% feasibility, not saturated. Below is
+how to reproduce it.
 
 > **Windows note:** verifiers 0.1.14 crashes on Windows at import
 > (`verifiers.v1` unconditionally imports the Unix-only `fcntl`). This machine
