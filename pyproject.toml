@@ -1,6 +1,6 @@
 [project]
 name = "dcopf-grid-verifiers"
-version = "0.2.2"
+version = "0.2.3"
 description = "DC optimal power flow RL environment with line limits: verifiable dispatch under transmission congestion. Ground truth cross-validated by two independently implemented DC-OPF solvers (scipy HiGHS LP vs pandapower); optimality reward hard-gated on a physics feasibility check."
 readme = "README.md"
 requires-python = ">=3.10"
