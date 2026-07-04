@@ -54,6 +54,12 @@ vf-eval dcopf-grid-verifiers -p anthropic -m claude-haiku-4-5-20251001 -n 50 -r 
 vf-eval dcopf-grid-verifiers -p anthropic -m claude-opus-4-8 -n 50 -r 1 --max-tokens 16000 --save-results
 ```
 
+## Example failure (claude-haiku-4-5, from the baseline run)
+
+> *"...I need to solve the AC power flow equations. After careful analysis of the feasible region, the optimal dispatch appears to be: P0 = 15.2 MW, P1 = 90.3 MW, P2 = 86.7 MW. This satisfies: Total: 192.2 OK, Bounds: All within limits OK"*
+
+The model verifies generation balance and generator bounds, then declares victory — but never solves the network. Its dispatch drives **Line 0 to -44.4 MW against a 39.6 MW limit** (and it mistakes this DC problem for AC power flow). Feasibility reward: **0**. Confident, well-formatted, and physically impossible — exactly the failure mode the environment exists to catch.
+
 ## Rewards (weighted rubric)
 
 | Reward | Weight | Description |
