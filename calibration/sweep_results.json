@@ -1,0 +1,206 @@
+{
+  "n_per_config": 300,
+  "default_config": {
+    "n_buses_range": [
+      4,
+      8
+    ],
+    "extra_edge_prob": 0.25,
+    "reactance_range": [
+      0.05,
+      0.4
+    ],
+    "load_range": [
+      20.0,
+      120.0
+    ],
+    "n_gen_range": [
+      2,
+      4
+    ],
+    "cap_range": [
+      0.5,
+      1.5
+    ],
+    "cap_scale_range": [
+      1.3,
+      2.0
+    ],
+    "pmin_frac_max": 0.15,
+    "cost_model": "uniform",
+    "cost_range": [
+      10.0,
+      80.0
+    ],
+    "congestion_bias": 0.55,
+    "tight_frac": [
+      0.1,
+      0.35
+    ],
+    "loose_frac": [
+      0.8,
+      1.5
+    ]
+  },
+  "results": {
+    "baseline_default": {
+      "config": {},
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.4633333333333333,
+        "binding_rate": 0.49666666666666665,
+        "mean_premium_all": 0.07225276950865134,
+        "median_premium_congested": 0.0754363279612707,
+        "max_premium": 1.6319730017831011,
+        "mean_n_binding": 0.56,
+        "mean_n_buses": 6.07,
+        "mean_n_lines": 8.15,
+        "rejection_rate": 0.276
+      }
+    },
+    "bias=0.3_uniform": {
+      "config": {
+        "congestion_bias": 0.3,
+        "cost_model": "uniform"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.2833333333333333,
+        "binding_rate": 0.31,
+        "mean_premium_all": 0.029356888669167833,
+        "median_premium_congested": 0.03496973630920041,
+        "max_premium": 0.6393150089809165,
+        "mean_n_binding": 0.32,
+        "mean_n_buses": 6.013333333333334,
+        "mean_n_lines": 8.006666666666666,
+        "rejection_rate": 0.146
+      }
+    },
+    "bias=0.45_uniform": {
+      "config": {
+        "congestion_bias": 0.45,
+        "cost_model": "uniform"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.3933333333333333,
+        "binding_rate": 0.4166666666666667,
+        "mean_premium_all": 0.05325947486170116,
+        "median_premium_congested": 0.06133331128093634,
+        "max_premium": 1.1435808632917126,
+        "mean_n_binding": 0.45,
+        "mean_n_buses": 6.093333333333334,
+        "mean_n_lines": 8.163333333333334,
+        "rejection_rate": 0.248
+      }
+    },
+    "bias=0.55_uniform": {
+      "config": {
+        "congestion_bias": 0.55,
+        "cost_model": "uniform"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.4633333333333333,
+        "binding_rate": 0.49666666666666665,
+        "mean_premium_all": 0.07225276950865134,
+        "median_premium_congested": 0.0754363279612707,
+        "max_premium": 1.6319730017831011,
+        "mean_n_binding": 0.56,
+        "mean_n_buses": 6.07,
+        "mean_n_lines": 8.15,
+        "rejection_rate": 0.276
+      }
+    },
+    "bias=0.7_uniform": {
+      "config": {
+        "congestion_bias": 0.7,
+        "cost_model": "uniform"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.5533333333333333,
+        "binding_rate": 0.5933333333333334,
+        "mean_premium_all": 0.09166701469880734,
+        "median_premium_congested": 0.08502146915396522,
+        "max_premium": 1.8092107137714049,
+        "mean_n_binding": 0.6866666666666666,
+        "mean_n_buses": 6.0633333333333335,
+        "mean_n_lines": 8.203333333333333,
+        "rejection_rate": 0.342
+      }
+    },
+    "bias=0.3_stack": {
+      "config": {
+        "congestion_bias": 0.3,
+        "cost_model": "stack"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.33,
+        "binding_rate": 0.3466666666666667,
+        "mean_premium_all": 0.06205545801963251,
+        "median_premium_congested": 0.09716614222036339,
+        "max_premium": 1.3043336970073274,
+        "mean_n_binding": 0.37333333333333335,
+        "mean_n_buses": 6.033333333333333,
+        "mean_n_lines": 8.01,
+        "rejection_rate": 0.156
+      }
+    },
+    "bias=0.45_stack": {
+      "config": {
+        "congestion_bias": 0.45,
+        "cost_model": "stack"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.43666666666666665,
+        "binding_rate": 0.45666666666666667,
+        "mean_premium_all": 0.08896924464932174,
+        "median_premium_congested": 0.1164999420398678,
+        "max_premium": 1.5619924465819675,
+        "mean_n_binding": 0.5166666666666667,
+        "mean_n_buses": 6.056666666666667,
+        "mean_n_lines": 8.096666666666666,
+        "rejection_rate": 0.21
+      }
+    },
+    "bias=0.55_stack": {
+      "config": {
+        "congestion_bias": 0.55,
+        "cost_model": "stack"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.51,
+        "binding_rate": 0.5333333333333333,
+        "mean_premium_all": 0.10080595138712517,
+        "median_premium_congested": 0.10170972480988531,
+        "max_premium": 1.5619924465819675,
+        "mean_n_binding": 0.61,
+        "mean_n_buses": 6.006666666666667,
+        "mean_n_lines": 8.023333333333333,
+        "rejection_rate": 0.264
+      }
+    },
+    "bias=0.7_stack": {
+      "config": {
+        "congestion_bias": 0.7,
+        "cost_model": "stack"
+      },
+      "metrics": {
+        "n": 300,
+        "merit_infeasible_rate": 0.5833333333333334,
+        "binding_rate": 0.6133333333333333,
+        "mean_premium_all": 0.11454706675340962,
+        "median_premium_congested": 0.10750456611786084,
+        "max_premium": 1.5619924465819675,
+        "mean_n_binding": 0.74,
+        "mean_n_buses": 6.003333333333333,
+        "mean_n_lines": 8.073333333333334,
+        "rejection_rate": 0.336
+      }
+    }
+  }
+}

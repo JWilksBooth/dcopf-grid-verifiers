@@ -1,0 +1,36 @@
+[project]
+name = "dcopf-grid-verifiers"
+version = "0.2.1"
+description = "DC optimal power flow RL environment with line limits: verifiable dispatch under transmission congestion. Ground truth cross-validated by two independently implemented DC-OPF solvers (scipy HiGHS LP vs pandapower); optimality reward hard-gated on a physics feasibility check."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "JWilksBooth" }]
+license = { text = "MIT" }
+keywords = [
+    "reinforcement-learning", "rl-environment", "verifiers", "power-systems",
+    "optimal-power-flow", "dcopf", "economic-dispatch", "grid", "verifiable-rewards",
+]
+tags = ["single-turn", "power-systems", "optimization", "physics-verified", "train", "eval"]
+dependencies = [
+    "numpy",
+    "scipy",
+    "verifiers>=0.1.14",
+    "datasets",
+]
+
+[project.optional-dependencies]
+crosscheck = ["pandapower>=3.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["dcopf_grid_verifiers/", "pyproject.toml"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["dcopf_grid_verifiers"]
+
+[tool.verifiers.eval]
+num_examples = 50
+rollouts_per_example = 3
