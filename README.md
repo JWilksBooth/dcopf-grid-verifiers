@@ -28,6 +28,30 @@ Validation run (300 randomly generated instances, seeds 0–299 — the full def
 
 The distribution behind these numbers is measured and tuned, not inherited — see [CALIBRATION.md](CALIBRATION.md) for the metric definitions, the parameter sweep, and the rationale for the chosen configuration.
 
+## Baseline results
+
+50 instances (seeds 0–49), 1 rollout each, default sampling, July 2026:
+
+| Model | total | format | feasibility | optimality | congestion |
+|---|---|---|---|---|---|
+| claude-haiku-4-5 (6k tokens) | **0.520** | 1.000 | 0.520 | 0.432 | 0.480 |
+| claude-opus-4-8 (16k tokens) | **0.901** | 0.920 | 0.900 | 0.898 | 0.900 |
+
+Reading: the weak model formats perfectly but only 52% of its dispatches survive
+the physics check — it loses on feasibility, not parsing. The frontier model
+reaches 90% feasibility and, *when feasible, averages 0.998 optimality* — its
+remaining gap is reasoning budget (4/50 rollouts truncated at 16k tokens) and
+occasional congestion misreads. Frontier reasoning-token demand is itself part
+of the task's difficulty: at 6k tokens, half of the frontier model's rollouts
+truncate before emitting an answer.
+
+Reproduce:
+
+```bash
+vf-eval dcopf-grid-verifiers -p anthropic -m claude-haiku-4-5-20251001 -n 50 -r 1 --max-tokens 6000 --save-results
+vf-eval dcopf-grid-verifiers -p anthropic -m claude-opus-4-8 -n 50 -r 1 --max-tokens 16000 --save-results
+```
+
 ## Rewards (weighted rubric)
 
 | Reward | Weight | Description |
