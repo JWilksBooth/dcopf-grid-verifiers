@@ -40,7 +40,7 @@ easy instances.
 
 Reading it:
 - **`binding@opt` overstates difficulty vs `merit-infeas`** (49.7% vs 46.3% at
-  baseline). The README's "49% congested" is the soft metric; the real figure is ~46%.
+  baseline). The README's "47% binding at optimum" is the soft metric; the real figure is ~46%.
 - **`congestion_bias` trades difficulty against rejection.** Pushing bias to 0.70
   buys more merit-infeasible instances but rejects a third of all draws.
 - **The realistic cost stack roughly doubles the median premium** (uniform 6–8%

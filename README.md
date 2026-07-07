@@ -102,4 +102,7 @@ The congestion rate is deliberately oversampled relative to a real N-1-planned g
 - [economic-dispatch](https://github.com/JWilksBooth/economic-dispatch) — merit-order control rung (frontier-saturated by design).
 - **dcopf-grid-verifiers** (this) — congestion / space.
 - [multiperiod-dispatch](https://github.com/JWilksBooth/multiperiod-dispatch) — ramp coupling / time; shipped, 74% defeat per-period merit order.
-- Next: N-1 contingency screening (dispatch must survive the worst single line outage); LMP/nodal pricing verified against LP duals.
+- [n1-contingency-dispatch](https://github.com/JWilksBooth/n1-contingency-dispatch) — N-1 security / uncertainty; shipped, 68% defeat the plain OPF optimum.
+- [nodal-pricing-lmp](https://github.com/JWilksBooth/nodal-pricing-lmp) — LMP price-formation / dual space; shipped, 44% out-of-band.
+
+Robotics vertical (same validation discipline): [robot-cycle-time](https://github.com/JWilksBooth/robot-cycle-time) (motion), [bimanual-chore-scheduling](https://github.com/JWilksBooth/bimanual-chore-scheduling) (orchestration).
